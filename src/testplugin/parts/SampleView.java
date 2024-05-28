@@ -6,6 +6,8 @@ import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -17,20 +19,26 @@ import jakarta.inject.Named;
 public class SampleView {
 	private Label myLabelInView;
 	private Label myLabel2InView;
+	private Label myLabel3InView;
 	@PostConstruct
 	public void createPartControl(Composite parent) {
 		System.out.println("Enter in SampleE4View postConstruct");
 		
-        GridLayout gridLayout = new GridLayout();
-        gridLayout.numColumns = 3;
+        GridLayout gridLayout = new GridLayout(3, false);
         parent.setLayout(gridLayout);
+        parent.setBackground(new Color(255, 0, 0));
 
 		myLabelInView = new Label(parent, SWT.BORDER);
 		myLabelInView.setText("This is a sample E4 view");
+		myLabelInView.setBackground(new Color(0,0,0));
+		myLabelInView.setForeground(new Color(255,255,255));
+		myLabelInView.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		
 		myLabel2InView = new Label(parent, SWT.BORDER);
 		myLabel2InView.setText("This is another sample label");
 		
+		myLabel3InView = new Label(parent, SWT.BORDER);
+		myLabel3InView.setText("This is 3rd sample label");
 	}
 
 	@Focus
